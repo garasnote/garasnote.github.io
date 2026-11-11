@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juan Pablo Osorio Rivera — data &amp; AI engineer</title>
+<meta name="description" content="Data scientist and AI engineer in Barcelona. Retrieval systems, evaluation, and pipelines that hold up under audit.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>J</text></svg>">
+<style>
+  :root {
+    --ink: #14161a;
+    --muted: #565b66;
+    --rule: #e2e4e9;
+    --accent: #1a4fd6;
+    --bg: #fdfdfc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e8eaee;
+      --muted: #9aa1ad;
+      --rule: #2a2d34;
+      --accent: #7fa2ff;
+      --bg: #101215;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.6 ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 42rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  h1 { font-size: 1.6rem; line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 .35rem; }
+  h2 { font-size: .78rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted);
+       font-weight: 600; margin: 2.75rem 0 .9rem; }
+  p { margin: 0 0 .9rem; }
+  .role { color: var(--muted); margin: 0 0 1.4rem; }
+  .links { display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; font-size: .93rem; margin: 0 0 .2rem; }
+  .links a { text-decoration: none; border-bottom: 1px solid transparent; }
+  .links a:hover, .links a:focus-visible { border-bottom-color: currentColor; }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0 0; }
+  section { margin: 0; }
+  .item { margin: 0 0 1.5rem; }
+  .item h3 { font-size: 1rem; margin: 0 0 .15rem; font-weight: 650; }
+  .item .meta { color: var(--muted); font-size: .87rem; margin: 0 0 .4rem; }
+  .item p { margin: 0; }
+  .skills { color: var(--muted); font-size: .93rem; }
+  .skills strong { color: var(--ink); font-weight: 600; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: .82rem; }
+  @media (max-width: 30rem) { main { padding-top: 2.5rem; } h1 { font-size: 1.35rem; } }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>Juan Pablo Osorio Rivera</h1>
+  <p class="role">Data scientist and AI engineer · Barcelona</p>
+  <nav class="links" aria-label="Contact and profiles">
+    <a href="JuanOsorio_CV.pdf">CV (PDF)</a>
+    <a href="mailto:jp.osorio4102@gmail.com">Email</a>
+    <a href="https://github.com/garasnote">GitHub</a>
+    <a href="https://www.linkedin.com/in/jp-or">LinkedIn</a>
+  </nav>
+
+  <hr>
+
+  <section aria-labelledby="h-work">
+    <h2 id="h-work">Work</h2>
+    <p>I build retrieval systems and the measurement that keeps them honest: a corpus, a
+    retriever, an evaluation set, and a table of results that includes the configurations that
+    lost. Chemical engineer first, so I care whether the number means something before I care
+    whether the model is clever.</p>
+  </section>
+
+  <section aria-labelledby="h-projects">
+    <h2 id="h-projects">Projects</h2>
+
+    <div class="item">
+      <h3><a href="https://github.com/garasnote/hiresignal">hiresignal</a></h3>
+      <p class="meta">Python · DuckDB · SQL · pytest · GitHub Actions</p>
+      <p>A job-market warehouse: 233k postings from 11 applicant-tracking systems, deduplicated
+      on keys that are not unique, modelled into a star schema with SQL marts, tested so a broken
+      rule fails the build, and a dashboard generated from the data itself.</p>
+    </div>
+
+    <div class="item">
+      <h3><a href="https://github.com/garasnote/rag-service">rag-service</a></h3>
+      <p class="meta">BM25 · embeddings · reciprocal rank fusion · FastAPI</p>
+      <p>RAG over the same corpus. BM25, dense retrieval and RRF, answers with citations. Every
+      configuration benchmarked on 15 labelled questions: BM25 reaches hit@1 of 0.85, the hybrid
+      0.80, dense retrieval 0.60. The simple retriever won on short, entity-heavy documents, and
+      the README says so.</p>
+    </div>
+
+    <div class="item">
+      <h3><a href="https://github.com/garasnote/snowy">snowy</a></h3>
+      <p class="meta">PyTorch · segmentation · Earth observation</p>
+      <p>Snow-cover estimation from 12 camera stations in the Pyrenees. 0.90 mIoU and +0.10 AUROC
+      over the baseline. First-author paper under review at <em>Computers &amp; Geosciences</em>,
+      best presentation award at Ljubljana.</p>
+    </div>
+
+    <div class="item">
+      <h3><a href="https://github.com/garasnote/SIVIGILAMeta">SIVIGILAMeta</a></h3>
+      <p class="meta">Python · pandas · public health data</p>
+      <p>A paper registry of chemical retailers normalised and joined to notified poisoning cases,
+      turned into a map by municipality that a small team used to decide where to inspect.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-exp">
+    <h2 id="h-exp">Experience</h2>
+
+    <div class="item">
+      <h3>Data Analyst — Secretaría de Salud, Gobernación del Meta</h3>
+      <p class="meta">Bogotá, Colombia · 2024</p>
+      <p>Digitised and normalised the registry of chemical retailers, joined it to health
+      surveillance records, and produced the municipality-level picture that replaced
+      equal-share inspection planning.</p>
+    </div>
+
+    <div class="item">
+      <h3>Technical Consultant — Consultors Ambientals de Negocis</h3>
+      <p class="meta">Project-based · 2024–2025</p>
+      <p>Feasibility studies for waste-to-energy and biogas projects: mass and energy balances,
+      equipment sizing, process economics, and vendor documentation checked against specification.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-edu">
+    <h2 id="h-edu">Education</h2>
+    <div class="item">
+      <h3>MSc Artificial Intelligence</h3>
+      <p class="meta">Universitat Pompeu Fabra, Barcelona · University of Ljubljana · 2026 · 8.54/10</p>
+    </div>
+    <div class="item">
+      <h3>BSc Chemical Engineering</h3>
+      <p class="meta">Universidad de los Andes, Bogotá · 2023 · 3.86/5.0</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-skills">
+    <h2 id="h-skills">Toolkit</h2>
+    <p class="skills"><strong>Languages</strong> Python, SQL, R, MATLAB, Bash ·
+      <strong>Data</strong> pandas, Polars, DuckDB, Parquet, PostgreSQL/pgvector ·
+      <strong>ML</strong> PyTorch, scikit-learn, embeddings, evaluation harnesses ·
+      <strong>Engineering</strong> Git, Docker, GitHub Actions, pytest, FastAPI, Power BI/DAX</p>
+  </section>
+
+  <footer>
+    <p>Barcelona, Spain · <a href="mailto:jp.osorio4102@gmail.com">jp.osorio4102@gmail.com</a></p>
+  </footer>
+
+</main>
+</body>
+</html>
