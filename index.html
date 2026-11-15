@@ -117,6 +117,28 @@
   .toolkit dt:first-child { margin-top: 0; }
   .toolkit dd { margin: 0; }
 
+  /* ---------- contact form ---------- */
+  .cform { max-width: 32rem; margin: 1.5rem 0 0; }
+  .cform .field { margin: 0 0 1.1rem; }
+  .cform label { display: block; font: 600 .72rem/1 var(--sans); letter-spacing: .14em;
+                 text-transform: uppercase; color: var(--faint); margin: 0 0 .45rem; }
+  .cform input[type="text"], .cform input[type="email"], .cform textarea {
+    width: 100%; font: 400 1rem/1.5 var(--sans); color: var(--ink); background: transparent;
+    border: 1px solid var(--rule); border-radius: 2px; padding: .6rem .7rem;
+  }
+  .cform textarea { min-height: 8.5rem; resize: vertical; }
+  .cform input:focus, .cform textarea:focus {
+    outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent);
+  }
+  .cform button {
+    font: 600 .8rem/1 var(--sans); letter-spacing: .1em; text-transform: uppercase;
+    color: var(--paper); background: var(--ink); border: 1px solid var(--ink);
+    padding: .8rem 1.6rem; border-radius: 2px; cursor: pointer;
+  }
+  .cform button:hover { background: var(--accent); border-color: var(--accent); }
+  .cform .botcheck { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .cform .note { font-size: .82rem; color: var(--faint); margin: 1.1rem 0 0; max-width: 42ch; }
+
   footer { border-top: 1px solid var(--rule); padding: 1.6rem 0 4rem; color: var(--faint); font-size: .84rem; }
   footer p { margin: 0; }
   footer a { color: var(--muted); }
@@ -279,10 +301,34 @@
 
       <section id="contact">
         <h2>06 · Get in touch</h2>
-        <p>If you are hiring or collaborating, send a message:</p>
-        <p style="font: 600 1.1rem/1.2 var(--sans); margin: 1rem 0;">
-          <a href="mailto:jp.osorio4102@gmail.com?subject=Job%20inquiry%20for%20Juan%20Pablo%20Osorio" style="text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: .12rem;">Get in touch &rarr;</a>
-        </p>
+        <p>If you are hiring or collaborating, send a message — it reaches my inbox directly.</p>
+
+        <form class="cform" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="11470693-89f3-469f-a98f-42874f0d9184">
+          <input type="hidden" name="subject" value="Contact from garasnote.github.io">
+          <input type="hidden" name="from_name" value="garasnote.github.io">
+          <input type="hidden" name="redirect" value="https://garasnote.github.io/thanks.html">
+          <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" type="text" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" name="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" required></textarea>
+          </div>
+
+          <button type="submit">Send message</button>
+
+          <p class="note">Or write to me directly at
+          <a href="mailto:jp.osorio4102@gmail.com" data-goatcounter-click="email">jp.osorio4102@gmail.com</a>.
+          This form is delivered by Web3Forms; nothing is stored on this site.</p>
+        </form>
       </section>
     </main>
   </div>
@@ -291,5 +337,13 @@
     <p>Barcelona, Spain · <a href="mailto:jp.osorio4102@gmail.com">jp.osorio4102@gmail.com</a> · last updated November 2026</p>
   </footer>
 </div>
+<script>
+  // A contact-form submission counts as an event in GoatCounter.
+  document.querySelector('.cform').addEventListener('submit', function () {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: 'form-submit', title: 'Contact form submitted', event: true });
+    }
+  });
+</script>
 </body>
 </html>
