@@ -337,12 +337,16 @@
             <div class="shots">
               <div class="shots-track">
                 <figure>
-                  <img loading="lazy" src="img/mobility-hmm.svg" width="576" height="384" alt="Bar chart of transport mode distribution: walk 43.6 percent, bike 3.1, car 42.9, others 10.4">
-                  <figcaption>Mode mix recovered from the network data, smoothed with an HMM.</figcaption>
+                  <img loading="lazy" src="img/mob-clusters.webp" width="1410" height="940" alt="Map of Slovenia divided into zones coloured by cluster, showing six groups covering the country">
+                  <figcaption>Spectral clustering of origin–destination flows over the zone grid: the groups are commuting basins, and they do not follow administrative borders.</figcaption>
                 </figure>
                 <figure>
-                  <img loading="lazy" src="img/mobility-kmeans.svg" width="576" height="384" alt="Bar chart of the same mode distribution produced by k-means">
-                  <figcaption>k-means on the same features: the global mix agrees with the HMM's, which is why the comparison happens per hour, not in the totals.</figcaption>
+                  <img loading="lazy" src="img/mob-traces.webp" width="1013" height="675" alt="Map near Ljubljana with a raw GPS trace in red and the denoised trace in blue, plus a zoom box">
+                  <figcaption>The denoising step, before and after: raw tower fixes jump between cells, the filtered path is a route a person could have taken.</figcaption>
+                </figure>
+                <figure>
+                  <img loading="lazy" src="img/mobility-hmm.svg" width="576" height="384" alt="Bar chart of transport mode distribution: walk 43.6 percent, bike 3.1, car 42.9, others 10.4">
+                  <figcaption>Mode mix recovered from the network data, smoothed with an HMM.</figcaption>
                 </figure>
               </div></div>
           </div>
@@ -379,12 +383,16 @@
             <div class="shots">
               <div class="shots-track">
                 <figure>
-                  <img loading="lazy" src="img/nyc-months.webp" width="800" height="533" alt="Line chart of FHV trips per month from 2015 to 2025">
-                  <figcaption>FHV trips per month, 2015 to 2025.</figcaption>
+                  <img loading="lazy" src="img/nyc-tip-map.webp" width="760" height="507" alt="Map of New York City taxi zones coloured by tip per square kilometre, with a hotspot over midtown Manhattan">
+                  <figcaption>Tip per km² by taxi zone, pandemic period — one of three periods in the same figure. Midtown carries the colour scale; almost everywhere else is flat.</figcaption>
                 </figure>
                 <figure>
-                  <img loading="lazy" src="img/nyc-zones.webp" width="600" height="400" alt="Bar chart of the ten busiest pickup zones">
-                  <figcaption>The ten busiest pickup zones.</figcaption>
+                  <img loading="lazy" src="img/nyc-network.webp" width="1485" height="990" alt="Network graph of taxi zones: green nodes linked by grey edges, sized by outgoing PageRank">
+                  <figcaption>Zones as nodes and trips between them as edges, sized by outgoing PageRank. The shape is Manhattan, recovered from the flows alone.</figcaption>
+                </figure>
+                <figure>
+                  <img loading="lazy" src="img/nyc-months.webp" width="800" height="533" alt="Line chart of FHV trips per month from 2015 to 2025">
+                  <figcaption>FHV trips per month, 2015 to 2025.</figcaption>
                 </figure>
               </div></div>
           </div>
