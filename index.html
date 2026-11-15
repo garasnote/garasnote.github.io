@@ -143,8 +143,9 @@
   .shots { margin: 1.1rem 0 .2rem; }
   .shots-track {
     display: flex; gap: .7rem; overflow-x: auto; scroll-snap-type: x mandatory;
-    scrollbar-width: thin; padding-bottom: .45rem;
+    scrollbar-width: thin; padding-bottom: .45rem; scroll-behavior: smooth;
   }
+  @media (prefers-reduced-motion: reduce) { .shots-track { scroll-behavior: auto; } }
   .shots figure { flex: 0 0 100%; scroll-snap-align: start; margin: 0; }
   .shots img {
     display: block; width: 100%; height: auto; border: 1px solid var(--rule);
@@ -532,7 +533,8 @@
     if (bar && figs.length < 2) bar.hidden = true;
     btns.forEach(function (b) {
       b.addEventListener('click', function () {
-        track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth, behavior: 'smooth' });
+        // smoothness comes from CSS so it degrades where JS smooth scrolling is unsupported
+        track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth });
       });
     });
     track.addEventListener('scroll', update, { passive: true });
