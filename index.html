@@ -139,6 +139,36 @@
   .cform .botcheck { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
   .cform .note { font-size: .82rem; color: var(--faint); margin: 1.1rem 0 0; max-width: 42ch; }
 
+  /* ---------- project screenshots: scroll-snap slideshow ---------- */
+  .shots { margin: 1.1rem 0 .2rem; }
+  .shots-track {
+    display: flex; gap: .7rem; overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: thin; padding-bottom: .45rem;
+  }
+  .shots figure { flex: 0 0 100%; scroll-snap-align: start; margin: 0; }
+  .shots img {
+    display: block; width: 100%; height: auto; border: 1px solid var(--rule);
+    border-radius: 2px; cursor: zoom-in;
+  }
+  .shots img:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .shots figcaption { font: 400 .78rem/1.5 var(--sans); color: var(--faint); margin-top: .5rem; }
+  .shots-bar { display: flex; align-items: center; gap: .5rem; margin-top: .1rem; }
+  .shots-bar button {
+    font: 600 .7rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted); background: transparent; border: 1px solid var(--rule);
+    border-radius: 2px; padding: .4rem .65rem; cursor: pointer;
+  }
+  .shots-bar button:hover { color: var(--accent); border-color: var(--accent); }
+  .shots-bar button:disabled { opacity: .35; cursor: default; }
+  .shots-bar .count { font: 400 .74rem/1 var(--mono); color: var(--faint); margin-left: .2rem; }
+  dialog.lb { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
+  dialog.lb::backdrop { background: rgba(10, 9, 8, .84); }
+  dialog.lb img {
+    display: block; max-width: 96vw; max-height: 86vh; width: auto; height: auto;
+    border-radius: 3px; cursor: zoom-out;
+  }
+  dialog.lb p { color: #cfc9c0; font: 400 .82rem/1.45 var(--sans); margin: .7rem 0 0; max-width: 70ch; }
+
   footer { border-top: 1px solid var(--rule); padding: 1.6rem 0 4rem; color: var(--faint); font-size: .84rem; }
   footer p { margin: 0; }
   footer a { color: var(--muted); }
@@ -188,13 +218,53 @@
         <h2>02 · Projects</h2>
 
         <article class="entry">
+          <div class="when">2025–26</div>
+          <div>
+            <h3><a href="https://github.com/garasnote/snowy">snowy</a></h3>
+            <p class="stack">PyTorch · segmentation · Earth observation</p>
+            <p>Snow-cover estimation from <strong>12 camera stations</strong> in the Pyrenees:
+            <strong>0.90 mIoU</strong> and <strong>+0.10 AUROC</strong> over the baseline. First-author paper under
+            review at <em>Computers &amp; Geosciences</em>; best presentation award, Ljubljana.</p>
+            <div class="shots">
+              <div class="shots-track">
+                <figure>
+                  <img loading="lazy" src="img/snow-grid.webp" alt="Grid of webcam frames with ground-truth and predicted snow masks overlaid">
+                  <figcaption>Held-out stations: camera frame, ground-truth snow, and what the model predicts.</figcaption>
+                </figure>
+                <figure>
+                  <img loading="lazy" src="img/snow-bycamera.webp" alt="Two bar charts: snow fraction per camera and brightness difference between snow and no-snow frames">
+                  <figcaption>What the twelve stations actually see — how much snow each camera gets, and the brightness shift snow causes.</figcaption>
+                </figure>
+                <figure>
+                  <img loading="lazy" src="img/snow-confusion.webp" alt="Confusion matrix for snow classification, labelled LDA balanced">
+                  <figcaption>The linear baseline (LDA) at a balanced threshold — the reference the segmentation model has to beat.</figcaption>
+                </figure>
+              </div>
+              <div class="shots-bar">
+                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
+                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
+                <span class="count">1 / 3</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="entry">
           <div class="when">2026</div>
           <div>
             <h3><a href="https://github.com/garasnote/hiresignal">hiresignal</a></h3>
-            <p class="stack">Python · DuckDB · SQL · pytest · GitHub Actions</p>
+            <p class="stack">Python · DuckDB · dbt · SQL · pytest · GitHub Actions</p>
             <p>A job-market warehouse: <strong>233k postings from 11 applicant-tracking systems</strong>,
-            deduplicated on keys that are not unique, modelled into a star schema, with SQL marts and a
-            dashboard generated from the data itself. Tests fail the build when a rule breaks.</p>
+            deduplicated on keys that are not unique, modelled into a star schema with dbt, with SQL marts
+            and a dashboard generated from the data itself. Tests fail the build when a rule breaks.</p>
+            <div class="shots">
+              <div class="shots-track">
+                <figure>
+                  <img loading="lazy" src="img/hs-dashboard.webp" alt="The HireSignal dashboard: a headline count above panels for platform, country, job family and pipeline stages">
+                  <figcaption>The live dashboard — a fixed panel of 1,200 boards, fetched every morning. Screenshot, 15 November 2026.</figcaption>
+                </figure>
+              </div>
+            </div>
           </div>
         </article>
 
@@ -214,17 +284,78 @@
                 <tr><th scope="row">Dense only</th><td>0.600</td><td>0.567</td></tr>
               </tbody>
             </table>
+            <div class="shots">
+              <div class="shots-track">
+                <figure>
+                  <img loading="lazy" src="img/rag-ui.webp" alt="The retrieval interface: a question box above a list of ranked postings and a cited answer">
+                  <figcaption>A question in, ranked postings and a cited answer out.</figcaption>
+                </figure>
+                <figure>
+                  <img loading="lazy" src="img/rag-arch.svg" alt="Architecture diagram: entry points, serving path, offline build and measurement tiers">
+                  <figcaption>The pipeline in tiers: entry points, serving path, offline build, and the measurement layer beside them.</figcaption>
+                </figure>
+              </div>
+              <div class="shots-bar">
+                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
+                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
+                <span class="count">1 / 2</span>
+              </div>
+            </div>
           </div>
         </article>
 
         <article class="entry">
-          <div class="when">2025–26</div>
+          <div class="when">2025</div>
           <div>
-            <h3><a href="https://github.com/garasnote/snowy">snowy</a></h3>
-            <p class="stack">PyTorch · segmentation · Earth observation</p>
-            <p>Snow-cover estimation from <strong>12 camera stations</strong> in the Pyrenees:
-            <strong>0.90 mIoU</strong> and <strong>+0.10 AUROC</strong> over the baseline. First-author paper under
-            review at <em>Computers &amp; Geosciences</em>; best presentation award, Ljubljana.</p>
+            <h3><a href="https://github.com/garasnote/Repro-INPFormer">Repro-INPFormer</a></h3>
+            <p class="stack">PyTorch · LoRA · ONNX · MVTec AD2</p>
+            <p>Reproduction and extension of a CVPR 2025 anomaly-detection method: the experiments of the
+            original paper re-run, then LoRA fine-tuning, ONNX export and FLOPs profiling on top.</p>
+            <div class="shots">
+              <div class="shots-track">
+                <figure>
+                  <img loading="lazy" src="img/inp-app.webp" alt="Demo interface showing an original image beside an anomaly heatmap, with a threshold slider">
+                  <figcaption>The demo built on the reproduced model: image in, anomaly heatmap out, threshold on a slider.</figcaption>
+                </figure>
+                <figure>
+                  <img loading="lazy" src="img/inp-framework.webp" alt="Pipeline diagram of the INP-Former method with its module blocks and losses">
+                  <figcaption>The method being reproduced — INP-Former's pipeline (figure from Luo et al., CVPR 2025).</figcaption>
+                </figure>
+              </div>
+              <div class="shots-bar">
+                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
+                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
+                <span class="count">1 / 2</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="when">2025</div>
+          <div>
+            <h3><a href="https://github.com/garasnote/modes-of-transportation-ds">modes-of-transportation-ds</a></h3>
+            <p class="stack">Python · HMM · clustering · mobility data</p>
+            <p>Transport-mode inference from cellular network data, for the FRI Data Science competition
+            (Slovenia): features per subscriber-hour, then an HMM over the sequence rather than a label per
+            point.</p>
+            <div class="shots">
+              <div class="shots-track">
+                <figure>
+                  <img loading="lazy" src="img/mobility-hmm.svg" alt="Bar chart of transport mode distribution: walk 43.6 percent, bike 3.1, car 42.9, others 10.4">
+                  <figcaption>Mode mix recovered from the network data, smoothed with an HMM.</figcaption>
+                </figure>
+                <figure>
+                  <img loading="lazy" src="img/mobility-kmeans.svg" alt="Bar chart of the same mode distribution produced by k-means">
+                  <figcaption>k-means on the same features: the global mix agrees with the HMM's, which is why the comparison happens per hour, not in the totals.</figcaption>
+                </figure>
+              </div>
+              <div class="shots-bar">
+                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
+                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
+                <span class="count">1 / 2</span>
+              </div>
+            </div>
           </div>
         </article>
 
@@ -235,6 +366,50 @@
             <p class="stack">Python · pandas · public health data</p>
             <p>A paper registry of chemical retailers, normalised and joined to notified poisoning cases,
             turned into a map by municipality that a small team used to decide where to inspect.</p>
+            <div class="shots">
+              <div class="shots-track">
+                <figure>
+                  <img loading="lazy" src="img/sivig-morbilidad.webp" alt="Line chart of pesticide-related morbidity rate per 100,000 inhabitants, national against Meta department, 2013 to 2022">
+                  <figcaption>Morbidity rate per 100,000 inhabitants by year — national against Meta department.</figcaption>
+                </figure>
+                <figure>
+                  <img loading="lazy" src="img/sivig-mortalidad.webp" alt="Line chart of pesticide-related mortality rate for the same period and the same two series">
+                  <figcaption>Mortality, same registry and same comparison.</figcaption>
+                </figure>
+              </div>
+              <div class="shots-bar">
+                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
+                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
+                <span class="count">1 / 2</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="when">2024</div>
+          <div>
+            <h3><a href="https://github.com/garasnote/big-data">big-data</a></h3>
+            <p class="stack">Python · Parquet · distributed processing</p>
+            <p>End-to-end analysis of New York City TLC trip records: preparation, scalable processing, and
+            the results written up — the project where I learned to stop loading everything into memory.</p>
+            <div class="shots">
+              <div class="shots-track">
+                <figure>
+                  <img loading="lazy" src="img/nyc-months.webp" alt="Line chart of FHV trips per month from 2015 to 2025">
+                  <figcaption>FHV trips per month, 2015 to 2025.</figcaption>
+                </figure>
+                <figure>
+                  <img loading="lazy" src="img/nyc-zones.webp" alt="Bar chart of the ten busiest pickup zones">
+                  <figcaption>The ten busiest pickup zones.</figcaption>
+                </figure>
+              </div>
+              <div class="shots-bar">
+                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
+                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
+                <span class="count">1 / 2</span>
+              </div>
+            </div>
           </div>
         </article>
       </section>
@@ -337,6 +512,54 @@
     <p>Barcelona, Spain · <a href="mailto:jp.osorio4102@gmail.com">jp.osorio4102@gmail.com</a> · last updated November 2026</p>
   </footer>
 </div>
+<script>
+  // Project screenshots: scroll-snap strips, arrows, counter, click to enlarge.
+  document.querySelectorAll('.shots').forEach(function (s) {
+    var track = s.querySelector('.shots-track');
+    var figs = track.querySelectorAll('figure');
+    var bar = s.querySelector('.shots-bar');
+    var count = s.querySelector('.count');
+    var btns = bar ? bar.querySelectorAll('button') : [];
+
+    function update() {
+      var i = Math.min(figs.length, Math.round(track.scrollLeft / track.clientWidth) + 1);
+      if (count) count.textContent = i + ' / ' + figs.length;
+      if (btns.length === 2) {
+        btns[0].disabled = track.scrollLeft < 8;
+        btns[1].disabled = track.scrollLeft > track.scrollWidth - track.clientWidth - 8;
+      }
+    }
+    if (bar && figs.length < 2) bar.hidden = true;
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth, behavior: 'smooth' });
+      });
+    });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+
+    track.querySelectorAll('img').forEach(function (img) {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', function () {
+        var d = document.createElement('dialog');
+        d.className = 'lb';
+        var big = document.createElement('img');
+        big.src = img.currentSrc || img.src;
+        big.alt = img.alt;
+        var cap = document.createElement('p');
+        var fig = img.closest('figure').querySelector('figcaption');
+        cap.textContent = fig ? fig.textContent : '';
+        d.appendChild(big);
+        d.appendChild(cap);
+        d.addEventListener('click', function () { d.close(); });
+        document.body.appendChild(d);
+        d.showModal();
+        d.addEventListener('close', function () { d.remove(); });
+      });
+    });
+  });
+</script>
 <script>
   // A contact-form submission counts as an event in GoatCounter.
   document.querySelector('.cform').addEventListener('submit', function () {
