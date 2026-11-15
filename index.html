@@ -241,16 +241,16 @@
             <div class="shots">
               <div class="shots-track">
                 <figure>
-                  <img loading="lazy" src="img/snow-grid.webp" width="1564" height="1043" alt="Grid of webcam frames with ground-truth and predicted snow masks overlaid">
-                  <figcaption>Held-out stations: camera frame, ground-truth snow, and what the model predicts.</figcaption>
+                  <img loading="lazy" src="img/snow-grid.webp" width="1564" height="1043" alt="Three webcam frames from one training station, each shown with the ground mask in green and the snow mask in blue">
+                  <figcaption>One of the nine stations the model trained on: the frame, the ground mask (green) and the snow mask (blue) as labelled.</figcaption>
                 </figure>
                 <figure>
-                  <img loading="lazy" src="img/snow-bycamera.webp" width="1400" height="933" alt="Two bar charts: snow fraction per camera and brightness difference between snow and no-snow frames">
-                  <figcaption>What the twelve stations actually see — how much snow each camera gets, and the brightness shift snow causes.</figcaption>
+                  <img loading="lazy" src="img/snow-bycamera.webp" width="1400" height="933" alt="Two bar charts: snow fraction for three stations, and the brightness difference between snow and no-snow frames for the same three">
+                  <figcaption>Snow fraction per station, and the brightness change snow causes, for three of the stations: one darkens under snow, two brighten.</figcaption>
                 </figure>
                 <figure>
-                  <img loading="lazy" src="img/snow-confusion.webp" width="1426" height="951" alt="Confusion matrix for snow classification, labelled LDA balanced">
-                  <figcaption>The linear baseline (LDA) at a balanced threshold — the reference the segmentation model has to beat.</figcaption>
+                  <img loading="lazy" src="img/snow-confusion.webp" width="1426" height="951" alt="Confusion matrix for snow versus no-snow classification with LDA on a balanced split">
+                  <figcaption>Snow vs no-snow from handcrafted image statistics alone: LDA on a balanced split, 767 of 1026 frames correct.</figcaption>
                 </figure>
               </div></div>
           </div>
@@ -389,10 +389,6 @@
                 <figure>
                   <img loading="lazy" src="img/nyc-network.webp" width="1485" height="990" alt="Network graph of taxi zones: green nodes linked by grey edges, sized by outgoing PageRank">
                   <figcaption>Zones as nodes and trips between them as edges, sized by outgoing PageRank. The shape is Manhattan, recovered from the flows alone.</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" src="img/nyc-months.webp" width="800" height="533" alt="Line chart of FHV trips per month from 2015 to 2025">
-                  <figcaption>FHV trips per month, 2015 to 2025.</figcaption>
                 </figure>
               </div></div>
           </div>
