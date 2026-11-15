@@ -142,8 +142,8 @@
   /* ---------- project screenshots: scroll-snap slideshow ---------- */
   .shots { margin: 1.1rem 0 .2rem; }
   .shots-track {
-    display: flex; gap: .7rem; overflow-x: auto; scroll-snap-type: x mandatory;
-    scrollbar-width: thin; padding-bottom: .45rem;
+    display: flex; align-items: flex-start; gap: .7rem; overflow-x: auto;
+    scroll-snap-type: x mandatory; scrollbar-width: thin; padding-bottom: .45rem;
   }
   .shots figure { flex: 0 0 100%; scroll-snap-align: start; margin: 0; }
   .shots img {
@@ -511,6 +511,7 @@
       // instant jump: scroll-snap handles the alignment, and no animation means the
       // control works even where smooth scrolling never completes
       track.scrollLeft = i * (track.clientWidth || 0);
+      update();  // don't wait for the scroll event to move the dots
     }
     function update() {
       var i = current();
