@@ -153,15 +153,26 @@
   }
   .shots img:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .shots figcaption { font: 400 .78rem/1.5 var(--sans); color: var(--faint); margin-top: .5rem; }
-  .shots-bar { display: flex; align-items: center; gap: .5rem; margin-top: .1rem; }
-  .shots-bar button {
-    font: 600 .7rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase;
-    color: var(--muted); background: transparent; border: 1px solid var(--rule);
-    border-radius: 2px; padding: .4rem .65rem; cursor: pointer;
+  .shots-view { position: relative; }
+  .shot-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+    width: 2.3rem; height: 2.3rem; display: grid; place-items: center;
+    background: var(--paper); color: var(--ink); border: 1px solid var(--rule);
+    border-radius: 50%; cursor: pointer; opacity: 0; transition: opacity .16s ease;
   }
-  .shots-bar button:hover { color: var(--accent); border-color: var(--accent); }
-  .shots-bar button:disabled { opacity: .35; cursor: default; }
-  .shots-bar .count { font: 400 .74rem/1 var(--mono); color: var(--faint); margin-left: .2rem; }
+  .shots-view:hover .shot-arrow, .shot-arrow:focus-visible { opacity: 1; }
+  @media (hover: none) { .shot-arrow { opacity: 1; } }
+  .shot-arrow:hover { color: var(--accent); border-color: var(--accent); }
+  .shot-arrow[disabled] { opacity: 0; pointer-events: none; }
+  .shot-arrow.prev { left: .55rem; }
+  .shot-arrow.next { right: .55rem; }
+  .shots-dots { display: flex; gap: .45rem; margin-top: .7rem; }
+  .shots-dots button {
+    width: .55rem; height: .55rem; padding: 0; border-radius: 50%; cursor: pointer;
+    border: 1px solid var(--faint); background: transparent;
+  }
+  .shots-dots button:hover { border-color: var(--accent); }
+  .shots-dots button[aria-current="true"] { background: var(--accent); border-color: var(--accent); }
   dialog.lb { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
   dialog.lb::backdrop { background: rgba(10, 9, 8, .84); }
   dialog.lb img {
@@ -240,13 +251,7 @@
                   <img loading="lazy" src="img/snow-confusion.webp" alt="Confusion matrix for snow classification, labelled LDA balanced">
                   <figcaption>The linear baseline (LDA) at a balanced threshold — the reference the segmentation model has to beat.</figcaption>
                 </figure>
-              </div>
-              <div class="shots-bar">
-                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
-                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
-                <span class="count">1 / 3</span>
-              </div>
-            </div>
+              </div></div>
           </div>
         </article>
 
@@ -295,13 +300,7 @@
                   <img loading="lazy" src="img/rag-arch.svg" alt="Architecture diagram: entry points, serving path, offline build and measurement tiers">
                   <figcaption>The pipeline in tiers: entry points, serving path, offline build, and the measurement layer beside them.</figcaption>
                 </figure>
-              </div>
-              <div class="shots-bar">
-                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
-                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
-                <span class="count">1 / 2</span>
-              </div>
-            </div>
+              </div></div>
           </div>
         </article>
 
@@ -322,13 +321,7 @@
                   <img loading="lazy" src="img/inp-framework.webp" alt="Pipeline diagram of the INP-Former method with its module blocks and losses">
                   <figcaption>The method being reproduced — INP-Former's pipeline (figure from Luo et al., CVPR 2025).</figcaption>
                 </figure>
-              </div>
-              <div class="shots-bar">
-                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
-                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
-                <span class="count">1 / 2</span>
-              </div>
-            </div>
+              </div></div>
           </div>
         </article>
 
@@ -350,13 +343,7 @@
                   <img loading="lazy" src="img/mobility-kmeans.svg" alt="Bar chart of the same mode distribution produced by k-means">
                   <figcaption>k-means on the same features: the global mix agrees with the HMM's, which is why the comparison happens per hour, not in the totals.</figcaption>
                 </figure>
-              </div>
-              <div class="shots-bar">
-                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
-                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
-                <span class="count">1 / 2</span>
-              </div>
-            </div>
+              </div></div>
           </div>
         </article>
 
@@ -377,13 +364,7 @@
                   <img loading="lazy" src="img/sivig-mortalidad.webp" alt="Line chart of pesticide-related mortality rate for the same period and the same two series">
                   <figcaption>Mortality, same registry and same comparison.</figcaption>
                 </figure>
-              </div>
-              <div class="shots-bar">
-                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
-                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
-                <span class="count">1 / 2</span>
-              </div>
-            </div>
+              </div></div>
           </div>
         </article>
 
@@ -404,13 +385,7 @@
                   <img loading="lazy" src="img/nyc-zones.webp" alt="Bar chart of the ten busiest pickup zones">
                   <figcaption>The ten busiest pickup zones.</figcaption>
                 </figure>
-              </div>
-              <div class="shots-bar">
-                <button type="button" data-dir="-1" aria-label="Previous figure">&larr; Prev</button>
-                <button type="button" data-dir="1" aria-label="Next figure">Next &rarr;</button>
-                <span class="count">1 / 2</span>
-              </div>
-            </div>
+              </div></div>
           </div>
         </article>
       </section>
@@ -514,35 +489,79 @@
   </footer>
 </div>
 <script>
-  // Project screenshots: scroll-snap strips, arrows, counter, click to enlarge.
+  // Project screenshots: scroll-snap strip with edge chevrons, dots, and click to enlarge.
   document.querySelectorAll('.shots').forEach(function (s) {
     var track = s.querySelector('.shots-track');
-    var figs = track.querySelectorAll('figure');
-    var bar = s.querySelector('.shots-bar');
-    var count = s.querySelector('.count');
-    var btns = bar ? bar.querySelectorAll('button') : [];
+    var figs = Array.prototype.slice.call(track.querySelectorAll('figure'));
+    if (!figs.length) return;
 
-    function update() {
-      var i = Math.min(figs.length, Math.round(track.scrollLeft / track.clientWidth) + 1);
-      if (count) count.textContent = i + ' / ' + figs.length;
-      if (btns.length === 2) {
-        btns[0].disabled = track.scrollLeft < 8;
-        btns[1].disabled = track.scrollLeft > track.scrollWidth - track.clientWidth - 8;
-      }
+    // the strip lives in a positioned wrapper so the chevrons can sit over the image
+    var view = document.createElement('div');
+    view.className = 'shots-view';
+    track.parentNode.insertBefore(view, track);
+    view.appendChild(track);
+
+    var prev = null, next = null, dots = null;
+
+    function current() {
+      var w = track.clientWidth || 1;
+      return Math.min(figs.length - 1, Math.max(0, Math.round(track.scrollLeft / w)));
     }
-    if (bar && figs.length < 2) bar.hidden = true;
-    btns.forEach(function (b) {
-      b.addEventListener('click', function () {
-        // smoothness comes from CSS so it degrades where JS smooth scrolling is unsupported
-        track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth });
+    function go(i) {
+      i = Math.min(figs.length - 1, Math.max(0, i));
+      track.scrollTo({ left: i * (track.clientWidth || 0), top: 0 });
+    }
+    function update() {
+      var i = current();
+      if (dots) {
+        Array.prototype.forEach.call(dots.children, function (d, j) {
+          d.setAttribute('aria-current', j === i ? 'true' : 'false');
+        });
+      }
+      if (prev) prev.disabled = i === 0;
+      if (next) next.disabled = i === figs.length - 1;
+    }
+
+    if (figs.length > 1) {
+      var chevron = '<svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true">'
+                  + '<path d="__D__" fill="none" stroke="currentColor" stroke-width="1.7" '
+                  + 'stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+      prev = document.createElement('button');
+      prev.type = 'button';
+      prev.className = 'shot-arrow prev';
+      prev.setAttribute('aria-label', 'Previous figure');
+      prev.innerHTML = chevron.replace('__D__', 'M10 3 5 8l5 5');
+
+      next = document.createElement('button');
+      next.type = 'button';
+      next.className = 'shot-arrow next';
+      next.setAttribute('aria-label', 'Next figure');
+      next.innerHTML = chevron.replace('__D__', 'M6 3l5 5-5 5');
+
+      prev.addEventListener('click', function () { go(current() - 1); });
+      next.addEventListener('click', function () { go(current() + 1); });
+      view.appendChild(prev);
+      view.appendChild(next);
+
+      dots = document.createElement('div');
+      dots.className = 'shots-dots';
+      dots.setAttribute('role', 'tablist');
+      figs.forEach(function (f, i) {
+        var d = document.createElement('button');
+        d.type = 'button';
+        d.setAttribute('aria-label', 'Figure ' + (i + 1) + ' of ' + figs.length);
+        d.addEventListener('click', function () { go(i); });
+        dots.appendChild(d);
       });
-    });
+      s.appendChild(dots);
+    }
+
     track.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
 
     track.querySelectorAll('img').forEach(function (img) {
-      img.style.cursor = 'zoom-in';
       img.addEventListener('click', function () {
         var d = document.createElement('dialog');
         d.className = 'lb';
