@@ -725,6 +725,9 @@
         if (c.el.getBoundingClientRect().top < vh * 0.9) {
           c.done = true;
           var t0 = performance.now();
+          // rAF can be throttled (background tab, frozen renderer); this guarantees the
+          // real number is on screen even if the animation never completes
+          setTimeout(function () { setFinal(c.el); }, 1400);
           (function step(now) {
             var t = Math.min(1, (now - t0) / 1100);
             var e = 1 - Math.pow(1 - t, 3);
